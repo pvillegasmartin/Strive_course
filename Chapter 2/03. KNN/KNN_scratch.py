@@ -24,6 +24,7 @@ class KNN:
     def fit(self, x, y):
         self.x_true = x
         self.y_true = y
+        return self
 
     def predict(self, x_test):
         y_hat = []
