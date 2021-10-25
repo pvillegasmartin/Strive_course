@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split, cross_validate, GridSearchCV
+from sklearn.model_selection import train_test_split, cross_validate, GridSearchCV, cross_val_score
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.tree import plot_tree
 import matplotlib.pyplot as plt
@@ -41,5 +41,8 @@ predictions = clf.predict(X_test)
 #plot_tree(clf, filled=True, rounded=True, class_names=["unacc", "acc", "good", "vgood"], feature_names=X.columns)
 plot_confusion_matrix(clf, X_test, y_test, display_labels=["unacc", "acc", "good", "vgood"])
 plt.show()
+cv_result_train = cross_val_score(clf, X_train, y_train, cv=5, n_jobs=-1, scoring="accuracy")
+cv_result_test = cross_val_score(clf, X_test, y_test, cv=5, n_jobs=-1, scoring="accuracy")
 acc_score = accuracy_score(y_test, predictions)
-print(acc_score) #  accuracy = 0.9826589595375722
+print(cv_result_train)
+print(cv_result_test)

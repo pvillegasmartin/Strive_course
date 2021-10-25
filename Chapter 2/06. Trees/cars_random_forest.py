@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split, cross_validate, GridSearchCV
+from sklearn.model_selection import train_test_split, cross_validate, GridSearchCV, cross_val_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import plot_tree
 import matplotlib.pyplot as plt
@@ -24,13 +24,17 @@ pca = PCA()
 classifier = RandomForestClassifier()
 pipe = make_pipeline(pca, classifier)
 #print(pipe.get_params().keys())
-parameters = {'pca__n_components':[2,4,5,6,7,8,10],'randomforestclassifier__criterion':('gini', 'entropy')}
+parameters = {'pca__n_components':[1,2,3,4,5,6],'randomforestclassifier__criterion':('gini', 'entropy')}
 clf = GridSearchCV(pipe, parameters)
 clf.fit(X_train, y_train)
 best_parameters = clf.best_params_ # we see best parameters are criterion='entropy', max_depth=None, min_samples_split=2, n_estimators=100, PCA: n_components=6
 print(best_parameters)
 predictions = clf.predict(X_test)
+cv_result_train = cross_val_score(clf, X_train, y_train, cv=5, n_jobs=-1, scoring="accuracy")
+cv_result_test = cross_val_score(clf, X_test, y_test, cv=5, n_jobs=-1, scoring="accuracy")
 acc_score = accuracy_score(y_test, predictions)
+print(cv_result_train.mean())
+print(cv_result_test.mean())
 print(acc_score)
 
 # Model Selection
