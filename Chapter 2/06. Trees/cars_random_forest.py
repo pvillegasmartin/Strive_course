@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split, cross_validate, GridSearchCV
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import plot_tree
 import matplotlib.pyplot as plt
 from sklearn.metrics import plot_confusion_matrix, accuracy_score
@@ -17,22 +17,23 @@ X.doors = X.doors.replace('5more',5)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
 
 # Model Selection
-'''
+
 # STEP 1: which parameters values
-parameters = {'criterion':('gini', 'entropy'), 'max_depth':[2, 10000]}
-classifier = DecisionTreeClassifier()
+'''
+parameters = {'criterion':('gini', 'entropy'), 'max_depth':[2,1000], 'min_samples_split':[2, len(y)], 'n_estimators':[100, 10000]}
+classifier = RandomForestClassifier()
 clf = GridSearchCV(classifier, parameters)
 clf.fit(X_train, y_train)
-best_parameters = clf.best_params_ # we see best parameters are criterion='gini' and max_depth=None
+best_parameters = clf.best_params_ # we see best parameters are criterion='entropy', max_depth=None, min_samples_split=2, n_estimators=100
 print(best_parameters)
 
 # STEP 2: verify is a good model with cross validation
-classifier = DecisionTreeClassifier(criterion='gini', max_depth=None)
+classifier = RandomForestClassifier(criterion='entropy', max_depth=None, min_samples_split=2, n_estimators=100)
 cv = cross_validate(classifier, X_train, y_train, cv=5)
-print(cv['test_score'].mean()) # accuracy mean of 0.9751928946195261
-
+print(cv['test_score'].mean()) # accuracy mean of 0.9660882685778951
 '''
-clf = DecisionTreeClassifier(criterion='gini', max_depth=None)
+
+clf = RandomForestClassifier(criterion='entropy', max_depth=None, min_samples_split=2, n_estimators=100)
 clf = clf.fit(X_train, y_train)
 predictions = clf.predict(X_test)
 
@@ -42,4 +43,4 @@ predictions = clf.predict(X_test)
 plot_confusion_matrix(clf, X_test, y_test, display_labels=["unacc", "acc", "good", "vgood"])
 plt.show()
 acc_score = accuracy_score(y_test, predictions)
-print(acc_score) #  accuracy = 0.9826589595375722
+print(acc_score) # accuracy = 0.9749518304431599
