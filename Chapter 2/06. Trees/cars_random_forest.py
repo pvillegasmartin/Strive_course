@@ -31,10 +31,8 @@ best_parameters = clf.best_params_ # we see best parameters are criterion='entro
 print(best_parameters)
 predictions = clf.predict(X_test)
 cv_result_train = cross_val_score(clf, X_train, y_train, cv=5, n_jobs=-1, scoring="accuracy")
-cv_result_test = cross_val_score(clf, X_test, y_test, cv=5, n_jobs=-1, scoring="accuracy")
 acc_score = accuracy_score(y_test, predictions)
 print(cv_result_train.mean())
-print(cv_result_test.mean())
 print(acc_score)
 
 # Model Selection
