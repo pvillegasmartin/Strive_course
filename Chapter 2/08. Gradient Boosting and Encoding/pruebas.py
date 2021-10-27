@@ -7,11 +7,11 @@ from sklearn.metrics import explained_variance_score, r2_score
 import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OrdinalEncoder, StandardScaler
+
 '''
 data = pd.read_csv("./insurance.csv")
-ct = ColumnTransformer( [('ordinal', OrdinalEncoder(handle_unknown= 'use_encoded_value', unknown_value = -1), [1,4] ),('non_transformed','passthrough',[3])] )
+ct = ColumnTransformer( [('ordinal', OrdinalEncoder(handle_unknown= 'use_encoded_value', unknown_value = -1), [1,4,5] ),('non_transformed','passthrough',[0,2,3,6])] )
 x_train = pd.DataFrame(ct.fit_transform(data))
-
 
 '''
 x_train, x_test, y_train, y_test, ct, scaler = dh.get_data("./insurance.csv")

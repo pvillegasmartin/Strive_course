@@ -9,7 +9,7 @@ def train_model():
 
     clf_1 = GradientBoostingRegressor(learning_rate=0.01, n_estimators=1000)
     clf_2 = XGBRegressor()
-    clf_3 = CatBoostRegressor(max_depth=4)
+    clf_3 = CatBoostRegressor(max_depth=4, verbose=False)
 
     clf_1.fit(x_train,y_train)
     clf_2.fit(x_train,y_train)
