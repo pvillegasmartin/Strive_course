@@ -18,6 +18,7 @@ def train_csv (path, rotate=False):
     df = pd.DataFrame()
     for folder in os.listdir(path):
         folder = os.path.join(path, folder)
+        print(folder)
         for filename in os.listdir(folder):
             img = Image.open(os.path.join(folder, filename))
             img_array = np.array(img, dtype=float)
@@ -32,7 +33,7 @@ def train_csv (path, rotate=False):
                 df_append = pd.DataFrame({'img': img_array}).T
                 df_append['class'] = folder
                 df = df.append(df_append)
-    df.to_csv('numbers.csv', index=False, header=False)
+    df.to_csv('numbers_train.csv', index=False, header=False)
 
 def load_images_from_csv(file):
     numbers = pd.read_csv(file, header=None)
@@ -41,7 +42,11 @@ def load_images_from_csv(file):
     return x, y
 
 if __name__=='__main__':
-    x, y = load_images_from_csv('numbers.csv')
+    """
+    path = r'.\trainingSet\trainingSet'
+    train_csv(path, rotate=False)
+    """
+    x, y = load_images_from_csv('numbers_train.csv')
     tree_classifiers = {
         "Extra Trees": ExtraTreesClassifier(n_estimators=100),
         "Random Forest": RandomForestClassifier(n_estimators=100),
