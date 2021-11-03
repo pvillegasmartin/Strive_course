@@ -11,7 +11,7 @@ from sklearn import model_selection, metrics
 import time
 
 def rotate_img (img):
-    rotated = img.rotate(45)
+    rotated = img.rotate(np.random.randint(1,45))
     return rotated
 
 def train_csv (path, rotate=False):
@@ -33,7 +33,7 @@ def train_csv (path, rotate=False):
                 df_append = pd.DataFrame({'img': img_array}).T
                 df_append['class'] = folder
                 df = df.append(df_append)
-    df.to_csv('numbers_train.csv', index=False, header=False)
+    df.to_csv('numbers_train_rotate.csv', index=False, header=False)
 
 def load_images_from_csv(file):
     numbers = pd.read_csv(file, header=None)
@@ -44,9 +44,9 @@ def load_images_from_csv(file):
 if __name__=='__main__':
     """
     path = r'.\trainingSet\trainingSet'
-    train_csv(path, rotate=False)
+    train_csv(path, rotate=True)
     """
-    x, y = load_images_from_csv('numbers_train.csv')
+    x, y = load_images_from_csv('numbers_train_rotate.csv')
     tree_classifiers = {
         "Extra Trees": ExtraTreesClassifier(n_estimators=100),
         "Random Forest": RandomForestClassifier(n_estimators=100),
