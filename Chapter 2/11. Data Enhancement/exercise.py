@@ -63,10 +63,12 @@ def enhancement(train, dev):
 x_new = enhancement(x_train, 8).sample(x_train.shape[0]//4)
 x_train, y_train = pd.concat([x_train, x_new ]).drop('cnt', axis=1), pd.concat([x_train, x_new ])['cnt']
 
-
+x_train['t1t2'] = (x_train['t1']+x_train['t2'])/2
+x_test['t1t2'] = (x_test['t1']+x_test['t2'])/2
+x_train, x_test = x_train.drop(['t1','t2'], axis=1), x_test.drop(['t1','t2'], axis=1)
 
 cat_vars = ['season','is_weekend','is_holiday','hour','weather_code']
-num_vars = ['t1','t2','hum','wind_speed']
+num_vars = ['t1t2','hum','wind_speed']
 
 tree_classifiers = {
   "Decision Tree": DecisionTreeRegressor(),
@@ -111,4 +113,5 @@ for model_name, model in tree_classifiers.items():
                               "Time": total_time},
                              ignore_index=True)
 
-#Catboost is the best model, higher R2-score and more variance explained
+print(results)
+#Catboost is the best model, higher R2-score and more variance explained and its quite fast
