@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 import torch
 from torch.autograd import Variable
 
+
 def data_handler():
     df = pd.read_csv('./data/bikes.csv')
 
