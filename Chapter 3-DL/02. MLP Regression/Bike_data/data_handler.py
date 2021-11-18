@@ -2,19 +2,23 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import torch
 from torch.autograd import Variable
+from torch.utils.data import Dataset
 
 
-def data_handler():
-    df = pd.read_csv('./data/bikes.csv')
+class data_handler(Dataset):
+    def __init__(self, csv_file):
+        df = pd.read_csv(csv_file)
+        # null_values = df.isnull().sum() #no null values
 
-    # null_values = df.isnull().sum() #no null values
+        self.x, self.y = df.drop(['instant', 'dteday', 'cnt'], axis=1).values, df['cnt']
+        self.features = self.x.shape[1]
+        self.n_samples = len(self.x)
 
-    x,y = df.drop(['instant', 'dteday', 'registered', 'cnt'], axis=1), df['cnt']
+    def __getitem__(self, index):
+        # we want to be index like dataset[index]
+        # to get the index-th batch
+        return self.x[index], self.y[index]
 
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42)
-
-    x_train, x_test, y_train, y_test = x_train.values, x_test.values, y_train.values.reshape(-1, 1), y_test.values.reshape(-1, 1)
-
-    x_train_tensor, x_test_tensor, y_train_tensor, y_test_tensor = Variable(torch.tensor(x_train).float()), Variable(torch.tensor(x_test).float()), Variable(torch.tensor(y_train).float()), Variable(torch.tensor(y_test).float())
-
-    return x_train_tensor, x_test_tensor, y_train_tensor, y_test_tensor
+    def __len__(self):
+        # to retrieve the total samples by doing len(dataset)
+        return self.n_samples
