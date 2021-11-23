@@ -6,7 +6,7 @@ rgb_img = cv2.cvtColor(bgr_img, cv2.COLOR_BGR2RGB)
 hsv_army = cv2.cvtColor(bgr_img, cv2.COLOR_BGR2HSV)
 
 qrCodeDetector = cv2.QRCodeDetector()
-decodedText, points, _ = qrCodeDetector.detectAndDecode(rgb_img)
+decodedText, points, _ = qrCodeDetector.detectAndDecode(bgr_img)
 if points is not None:
     print('QR detected')
     print(f'Decoded text: {decodedText}')

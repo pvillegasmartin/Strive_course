@@ -24,7 +24,7 @@ while text!=[]:
             j+=1
             break
 if j<4:
-    cv2.imwrite('meme_family.png', cv2.cvtColor(img_copy, cv2.COLOR_RGB2BGR))
+    #cv2.imwrite('meme_family.png', cv2.cvtColor(img_copy, cv2.COLOR_RGB2BGR))
     plt.imshow(img_copy)
     plt.show()
 else:
