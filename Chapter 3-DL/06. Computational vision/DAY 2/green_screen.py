@@ -2,8 +2,9 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
-def load_image(img_path):
+def load_image(img_path, width, height):
     bgr_img = cv2.imread(img_path)
+    bgr_img = cv2.resize(bgr_img, (width, height), interpolation=cv2.INTER_AREA)
     rgb_img = cv2.cvtColor(bgr_img, cv2.COLOR_BGR2RGB)
     gray_img = cv2.cvtColor(bgr_img, cv2.COLOR_BGR2GRAY)
     hsv_img = cv2.cvtColor(bgr_img, cv2.COLOR_BGR2HSV)
@@ -20,8 +21,17 @@ def mask_background(base_img):
     lower_bounds = (lower_h, 0, 0)
     upper_bounds = (upper_h, 255, 255)
 
-    m = cv2.inRange(base_img, lower_bounds, upper_bounds)
-    return m
+    mask = cv2.inRange(base_img, lower_bounds, upper_bounds)
+    return mask
+
+def mask_background_2(base_img):
+
+    retval,dst = cv2.threshold(base_img, 0, 255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+    # Create Kernel
+    kernel = np.ones((2, 2), np.uint8)
+    erotion = cv2.erode(dst, kernel, iterations=1)
+    opening = cv2.morphologyEx(erotion, cv2.MORPH_OPEN, kernel, iterations=1)
+    return dst
 
 if __name__=="__main__":
 
@@ -34,26 +44,49 @@ if __name__=="__main__":
     bgr_img, rgb_img, gray_img, hsv_img = load_image(path+image)
     """
     new_image = 'new_back.png'
-    bgr_new_img, rgb_new_img, gray_new_img, hsv_new_img = load_image(path + new_image)
+    new_image = 'barcelona.jpg'
+    new_image = '80s.png'
+
+
 
 
     # define a video capture object
     vid = cv2.VideoCapture(0)
+    # Capture the video frame by frame
+    ret, frame = vid.read()
+
+    bgr_new_img, rgb_new_img, gray_new_img, hsv_new_img = load_image(path + new_image, frame.shape[1], frame.shape[0])
+
 
     while True:
 
         # Capture the video frame by frame
         ret, frame = vid.read()
         if ret:
-            hsv_img = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-            mask = mask_background(hsv_img)
+            #hsv_img = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+            #mask = mask_background(hsv_img)
+            """
+            gray_img = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            
+            
+            
+            mask = mask_background_2(gray_img)
 
-            #Resize the background image and display it in
-            rgb_new_img = cv2.resize(rgb_new_img, (frame.shape[1], frame.shape[0]), interpolation=cv2.INTER_AREA)
-            frame[mask != 0] = rgb_new_img[mask != 0]
+            #Change parts of the video with the background image
+            frame[mask != 0] = bgr_new_img[mask != 0]
+            """
+            final = bgr_new_img.copy()
+
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            retval, dst = cv2.threshold(gray, 80, 255, cv2.THRESH_BINARY_INV)
+            contours, hierarchy = cv2.findContours(dst, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+            sorted_contours = sorted(contours, key=cv2.contourArea, reverse=True)
+            clean_contours = sorted_contours[0:3]
+            x, y, w, h = cv2.boundingRect(clean_contours[1])
+            final[y:y + h, x:x + w] = frame[y:y + h, x:x + w]
 
             # Display the resulting frame
-            cv2.imshow('frame', frame)
+            cv2.imshow('frame', final)
 
         # the 'q' button is set as the quitting button you may use any desired button of your choice
         if cv2.waitKey(1) & 0xFF == ord('q'):
