@@ -75,7 +75,7 @@ fig, axis = plt.subplots(figsize=(8,12), ncols=len(left_right_contours))
 
 for countur,ax in zip(left_right_contours,axis):
     x, y, w, h = cv2.boundingRect(countur)
-    cv2.rectangle(copy, (x-margin, y-margin), (x + w + margin, y + h + margin), (255, 0, 0), 2)
+    #cv2.rectangle(copy, (x-margin, y-margin), (x + w + margin, y + h + margin), (255, 0, 0), 2)
     number = dst[y-margin:y+h+margin, x-margin:x+w+margin]
     number = cv2.resize(number, (28, 28), interpolation=cv2.INTER_AREA)
     tensor_gray_img = torch.from_numpy(number)
