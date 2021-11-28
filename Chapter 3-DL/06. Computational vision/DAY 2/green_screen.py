@@ -36,19 +36,10 @@ def mask_background_2(base_img):
 if __name__=="__main__":
 
     path = 'C:/Users/Pablo/Desktop/STRIVE AI/Strive_course/Chapter 3-DL/06. Computational vision/DAY 2/'
-    """
-    #image = input('Image to change background (remember to write the type file too)')
 
-    #LOADING IMAGES IN DIFERENT COLORS SCALES
-    image = 'green_image.png'
-    bgr_img, rgb_img, gray_img, hsv_img = load_image(path+image)
-    """
     new_image = 'new_back.png'
     new_image = 'barcelona.jpg'
     new_image = '80s.png'
-
-
-
 
     # define a video capture object
     vid = cv2.VideoCapture(0)
@@ -63,30 +54,31 @@ if __name__=="__main__":
         # Capture the video frame by frame
         ret, frame = vid.read()
         if ret:
-            #hsv_img = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-            #mask = mask_background(hsv_img)
-            """
-            gray_img = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            
-            
-            
-            mask = mask_background_2(gray_img)
 
-            #Change parts of the video with the background image
-            frame[mask != 0] = bgr_new_img[mask != 0]
-            """
-            final = bgr_new_img.copy()
+            background = bgr_new_img.copy()
+
+            final_mask = np.zeros( (frame.shape[0],frame.shape[1]) )
 
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            # Clean not center part
+            gray[:int(frame.shape[1]/4),:] = 0
+            gray[:, :int(frame.shape[0] / 3)] = 0
+            gray[:, int(frame.shape[0]):] = 0
+
             retval, dst = cv2.threshold(gray, 80, 255, cv2.THRESH_BINARY_INV)
+
+
             contours, hierarchy = cv2.findContours(dst, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
             sorted_contours = sorted(contours, key=cv2.contourArea, reverse=True)
             clean_contours = sorted_contours[0:3]
-            x, y, w, h = cv2.boundingRect(clean_contours[1])
-            final[y:y + h, x:x + w] = frame[y:y + h, x:x + w]
+
+            cv2.fillPoly(final_mask, [clean_contours[1]], 255, lineType=cv2.LINE_AA)
+
+            background[final_mask!=0] = frame[final_mask!=0]
+
 
             # Display the resulting frame
-            cv2.imshow('frame', final)
+            cv2.imshow('frame', background)
 
         # the 'q' button is set as the quitting button you may use any desired button of your choice
         if cv2.waitKey(1) & 0xFF == ord('q'):
