@@ -1,0 +1,68 @@
+{"intents": [
+        {"tag": "greeting",
+         "patterns": ["Hi", "How are you", "Is anyone there?", "Hello", "Good day", "Whats up"],
+         "responses": ["Hello!", "Hi there, how can I help?"],
+         "context_set": [""]
+        },
+        
+        {"tag": "name",
+         "patterns": ["what is your name", "what should I call you", "whats your name?"],
+         "responses": ["You can call me bot.", "I'm bot!", "I'm bot."],
+         "context_set": [""]
+        },
+        
+        {"tag": "problem_solving",
+        "patterns": ["i need help","help me","tell me","i have some problem","problem","can you help me?"],
+        "responses": ["yes i can help you","tell me what can i do for you","what do you want me to do","how can i help you","what kind of help do you need","tell me"],
+        "context_set": [""]
+        },
+	{"tag": "asking_symptoms",
+        "patterns": ["i feel bad","i feel strange","i feel sick","sick","i'm not feeling well","i'm not in my best shape"],
+        "responses": ["what do you feel?","which are your principal symptons?","what do you feel?"],
+        "context_set": [""]
+        },
+	{
+        	"tag":"emotional problems",
+        	"patterns":["anxiety", "depression fatigue", "feeling tense", "flashbacks and nightmares", "disinterest in regular activities", "suicidal thoughts", "hallucinations", "delusions"],
+        	"responses":["you might be suffering from emotional problems"],
+        	"context_set":[""]
+
+        },
+	{
+        	"tag":"headache problems",
+        	"patterns":["dizziness", "nausea", "vomiting", "inability to walk"],
+        	"responses":["you might be suffering from headache problems"],
+        	"context_set":[""]
+
+        },
+	{
+        	"tag":"allergy",
+        	"patterns":[" sneezing and an itchy, runny or blocked nose","itchy, red, watering eyes","wheezing, chest tightness, shortness of breath and a cough","a raised, itchy, red rash (hives)","swollen lips, tongue, eyes or face","tummy pain, vomiting or diarrhoea","dry, red and cracked skin"],
+        	"responses":["you might be suffering from allergy"],
+        	"context_set":[""]
+
+        },
+	{
+        	"tag":"alcohol-related liver disease",
+        	"patterns":["abdominal pain","loss of appetite","fatigue","diarrhoea","feeling generally unwell","yellowing of the skin and whites of the eyes (jaundice)","swelling in the legs, ankles and feet, due to a build-up of fluid","swelling in your abdomen, due to a build-up of fluid known as ascites","a high temperature (fever) and shivering attacks","very itchy skin","hair loss","unusually curved fingertips and nails (clubbed fingers)","blotchy red palms","significant weight loss","weakness and muscle wasting","confusion and memory problems, trouble sleeping (insomnia) and changes in your personality due to a build-up of toxins in the brain","vomiting blood and black, tarry stools due to internal bleeding","a tendency to bleed and bruise more easily, such as frequent nosebleeds and bleeding gums","increased sensitivity to alcohol and drugs"],
+        	"responses":["you might be suffering from alcohol-related liver disease"],
+        	"context_set":[""]
+
+        },
+	{
+        	"tag":"COVID-19",
+        	"patterns":["have a new cough that’s lasted for an hour","a cough","have had 3 or more episodes of coughing in 24 hours","are coughing more than usual","a new continuous cough"," a fever/high temperature (37.8C or greater)"],
+        	"responses":["you might be suffering from COVID-19"],
+        	"context_set":[""]
+
+        },
+	{
+        	"tag":"common cold",
+        	"patterns":["a sore throat","a blocked or runny nose","sneezing","a cough","a hoarse voice","generally feeling unwell"],
+        	"responses":["you might be suffering from common cold"],
+        	"context_set":[""]
+
+        }
+		
+   ]
+}
