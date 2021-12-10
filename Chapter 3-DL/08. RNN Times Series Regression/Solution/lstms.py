@@ -21,8 +21,7 @@ class Model(nn.Module):
 
         self.rnn = nn.LSTM(input_size, self.hidden_size, neurons, batch_first = True,  dropout = 0)
             
-        #self.linear1 = Linear( 50*hidden_size, 50*hidden_size)
-        self.linear1 = Linear(hidden_size, 40)
+        self.linear1 = Linear( 1*hidden_size, 1*hidden_size)
 
         self.relu = nn.ReLU()
         
@@ -35,8 +34,7 @@ class Model(nn.Module):
         out, (hn,cn) = self.rnn(x.cuda(), ( h0.cuda(),c0.cuda() ) ) 
         hn = hn[-1]
         
-        #out = self.relu(hn.flatten())
-        out = self.relu(hn)
+        out = self.relu(hn.flatten())
         out = self.linear1(out)
         
         return out

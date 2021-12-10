@@ -14,11 +14,11 @@ x_test = dh.df_test
 
 n_steps = 40 
 n_inputs = 7
-n_neurons = 100
+n_neurons = 1
 hidden_dim = n_steps
 n_outputs = 1
 learning_rate = 0.01
-batch_size = 50
+batch_size = 1
 
 LSTM = Model(n_inputs, n_neurons, hidden_dim)
 

@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 
-df = pd.read_csv('./data_akbilgic.csv')
+df = pd.read_csv('data_akbilgic.csv')
 
 df_train = df[:431]
 df_test = df[431:]
