@@ -94,19 +94,24 @@ eng_prefixes = (
 )
 
 
-def filterPair(p):
-    return len(p[0].split(' ')) < MAX_LENGTH and \
-        len(p[1].split(' ')) < MAX_LENGTH and \
-        p[1].startswith(eng_prefixes)
+def filterPair(p, reverse=False):
+    if reverse:
+        return len(p[0].split(' ')) < MAX_LENGTH and \
+            len(p[1].split(' ')) < MAX_LENGTH and \
+            p[1].startswith(eng_prefixes)
+    else:
+        return len(p[0].split(' ')) < MAX_LENGTH and \
+               len(p[1].split(' ')) < MAX_LENGTH and \
+               p[0].startswith(eng_prefixes)
 
 
-def filterPairs(pairs):
-    return [pair for pair in pairs if filterPair(pair)]
+def filterPairs(pairs, reverse):
+    return [pair for pair in pairs if filterPair(pair, reverse)]
 
 def prepareData(lang1, lang2, reverse=False):
     input_lang, output_lang, pairs = readLangs(lang1, lang2, reverse)
     print("Read %s sentence pairs" % len(pairs))
-    pairs = filterPairs(pairs)
+    pairs = filterPairs(pairs, reverse)
     print("Trimmed to %s sentence pairs" % len(pairs))
     print("Counting words...")
     for pair in pairs:
@@ -330,7 +335,7 @@ def trainIters(encoder, decoder, n_iters, print_every=1000, plot_every=100, lear
 
     showPlot(plot_losses)
 
-def evaluate(encoder, decoder, sentence, max_length=MAX_LENGTH):
+def evaluate(input_lang,output_lang, encoder, decoder, sentence, max_length=MAX_LENGTH):
     with torch.no_grad():
         input_tensor = tensorFromSentence(input_lang, sentence)
         input_length = input_tensor.size()[0]
@@ -394,25 +399,25 @@ def showAttention(input_sentence, output_words, attentions):
     plt.show()
 
 
-def evaluateAndShowAttention(input_sentence):
-    output_words, attentions = evaluate(
+def evaluateAndShowAttention(input_lang, output_lang, encoder1, attn_decoder1,input_sentence):
+    output_words, attentions = evaluate(input_lang,output_lang,
         encoder1, attn_decoder1, input_sentence)
     print('input =', input_sentence)
     print('output =', ' '.join(output_words))
-    showAttention(input_sentence, output_words, attentions)
+    return ' '.join(output_words)
+    #showAttention(input_sentence, output_words, attentions)
 
+"""
 #CALLS
-input_lang, output_lang, pairs = prepareData('eng', 'spa', True)
+input_lang, output_lang, pairs = prepareData('eng', 'spa', False)
 hidden_size = 256
 encoder1 = EncoderRNN(input_lang.n_words, hidden_size).to(device)
 attn_decoder1 = AttnDecoderRNN(hidden_size, output_lang.n_words, dropout_p=0.1).to(device)
 
 trainIters(encoder1, attn_decoder1, 75000, print_every=5000)
 
-torch.save(encoder1.state_dict(), 'encoder_gru.pth')
-torch.save(attn_decoder1.state_dict(), 'attn_decoder_gru.pth')
+torch.save(encoder1.state_dict(), 'encoder_gru_eng-spa.pth')
+torch.save(attn_decoder1.state_dict(), 'attn_decoder_gru_eng-spa.pth')
 
-evaluateRandomly(encoder1, attn_decoder1)
-
-
-
+#evaluateRandomly(encoder1, attn_decoder1)
+"""

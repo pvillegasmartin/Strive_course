@@ -14,3 +14,5 @@ eng_prefixes = (
 
 teacher_forcing_ratio = 0.5
 hidden_size = 256
+
+n_iter = 75000

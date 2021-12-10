@@ -78,19 +78,24 @@ def readLangs(lang1, lang2, reverse=False):
 
     return input_lang, output_lang, pairs
 
-def filterPair(p):
-    return len(p[0].split(' ')) < MAX_LENGTH and \
+def filterPair(p, reverse):
+    if reverse:
+        return len(p[0].split(' ')) < MAX_LENGTH and \
         len(p[1].split(' ')) < MAX_LENGTH and \
         p[1].startswith(eng_prefixes)
+    else:
+        return len(p[0].split(' ')) < MAX_LENGTH and \
+               len(p[1].split(' ')) < MAX_LENGTH and \
+               p[0].startswith(eng_prefixes)
 
 
-def filterPairs(pairs):
-    return [pair for pair in pairs if filterPair(pair)]
+def filterPairs(pairs, reverse):
+    return [pair for pair in pairs if filterPair(pair, reverse)]
 
 def prepareData(lang1, lang2, reverse=False):
     input_lang, output_lang, pairs = readLangs(lang1, lang2, reverse)
     print("Read %s sentence pairs" % len(pairs))
-    pairs = filterPairs(pairs)
+    pairs = filterPairs(pairs, reverse)
     print("Trimmed to %s sentence pairs" % len(pairs))
     print("Counting words...")
     for pair in pairs:
