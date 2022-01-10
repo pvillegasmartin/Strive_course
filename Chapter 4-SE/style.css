@@ -1,0 +1,15 @@
+html, body {height:100%; width:100%}
+
+td{max-width:300px;text-align:center;}
+
+table{margin:auto;}
+
+#general_info{float:left; background-color: #2196f326;height:100%;padding:10px;width:315px; text-align:center;}
+
+#career_info{background-color: #2196f30a;padding:0px 10px;height:100%;float:left;width:calc(100% - 365px);}
+
+#profile_pic{border-radius: 50%;}
+
+.logo{min-width:200px;
+margin-left:15px;
+float:left;}
