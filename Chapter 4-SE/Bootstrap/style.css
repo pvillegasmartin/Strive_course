@@ -1,0 +1,19 @@
+.card > img{
+    object-fit: cover;
+    object-position:center;
+    height: 25vh;
+}
+
+.carousel-item img{
+    height: 50vh;
+    object-fit: cover;
+    object-position:center;
+}
+
+footer{
+    background:#f1f1f1;
+}
+
+.container > h1{
+    padding-top:55px !important;
+}
