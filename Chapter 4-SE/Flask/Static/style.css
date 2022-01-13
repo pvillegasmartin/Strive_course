@@ -1,0 +1,27 @@
+:root{
+
+    --background-color: #f6f4d2ff;
+    --prymary-color: #d4e09bff;
+    --tea-green: #cbdfbdff;
+    --dark-salmon: #f19c79ff;
+    --medium-carmine: #a44a3fff;
+
+    --text-color: #232323;
+}
+
+body{
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+
+.card{
+    height:300px;
+    margin-bottom:10px;
+}
+
+.card > img{
+    object-fit: cover;
+    object-position:top;
+    height: 15vh;
+}
