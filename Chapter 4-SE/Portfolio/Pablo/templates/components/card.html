@@ -1,0 +1,17 @@
+{% macro card(img, img_desc, title, text, technologies, date, link) %}
+    <div class="card" style="cursor: pointer;" onclick="window.open('{{link}}');">
+      <div class="card-body" >
+          <h5 class="card-title">{{title}}</h5>
+          <p class="card-text"><small class="text-muted">{{date}}</small></p>
+          <p class="card-text" style="height: 6rem;">{{text}}</p>
+          <div class="row">
+              {% for tech in technologies %}
+              <div class="col-2">
+                  <img src={{tech[1]}} alt={{tech[0]}} title={{tech[0]}} style="height: 1.5rem;width: 1.5rem;">
+              </div>
+              {% endfor %}
+          </div>
+      </div>
+        <img src={{img}} class="card-img-bottom" alt={{img_desc}}>
+    </div>
+{% endmacro %}

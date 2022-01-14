@@ -1,0 +1,16 @@
+{%from "components/horizontal_card.html" import horizontal_card%}
+{%from "components/list_descriptions.html" import list_descriptions%}
+
+{% extends "base.html" %}
+
+{% block title %}PV - About me{% endblock %}
+
+{% block content %}
+    <div id="about_me" class="container">
+        {{horizontal_card('Hola!', 'static/profile_photo.JPEG', 'Personal_image_of_Pablo', personal_description)}}
+        <h2>my skills</h2>
+        {{list_descriptions(skills)}}
+        <h2>How have i got them?</h2>
+        <h2>Other interests</h2>
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{%from "components/card.html" import card%}
+
+{% block title %}PV - My projects{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% if ds_projects %}
+            <h2>Data science projects</h2>
+            <div class="row">
+                {% for project in ds_projects %}
+                    <div class="col-12 col-md-4 col-xl-3">
+                        {{card(project.img, project.img_desc, project.title, project.text, project.technologies, project.date, project.link)}}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if pbi_projects %}
+            <h2>Data visualization projects</h2>
+            <div class="row">
+                {% for project in pbi_projects %}
+                    <div class="col-12 col-md-4 col-xl-3">
+                        {{card(project.img, project.img_desc, project.title, project.text, project.technologies, project.date, project.link)}}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if other_projects %}
+            <h2>Other projects</h2>
+            <div class="row">
+                {% for project in other_projects %}
+                    <div class="col-12 col-md-4 col-xl-3">
+                        {{card(project.img, project.img_desc, project.title, project.text, project.technologies, project.date, project.link)}}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}
