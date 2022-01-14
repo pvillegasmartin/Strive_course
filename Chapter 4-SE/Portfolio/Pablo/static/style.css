@@ -5,7 +5,7 @@
     --secondary-color: #63cccaff;
     --third-color: #5da399ff;
     --fourth-color: #42858cff;
-    --background-color: #35393cff;
+    --background-color: #42424a;
 
     --text-color: #232323;
 }
@@ -23,13 +23,13 @@ h2{
 }
 
 .navbar{
-    margin-bottom: 12vh;
+    margin-bottom: 7vh;
 }
 
 /* -------------- HOME -------------- */
 
 #particles-js{
-    background-color:#42424a;
+    background-color:var(--background-color);
     height:100vh;
 }
 
@@ -108,7 +108,12 @@ h2{
     object-fit: cover;
     object-position: top;
 }
-.card:hover{
+
+.card-link{
+    margin-bottom: 1.5vh;
+}
+
+.card-link:hover{
     background-color: #d7d8db;
     transition: background-color .5s;
 }

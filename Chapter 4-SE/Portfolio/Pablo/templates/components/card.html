@@ -1,5 +1,5 @@
 {% macro card(img, img_desc, title, text, technologies, date, link) %}
-    <div class="card" style="cursor: pointer;" onclick="window.open('{{link}}');">
+    <div class="card card-link" style="cursor: pointer;" onclick="window.open('{{link}}');">
       <div class="card-body" >
           <h5 class="card-title">{{title}}</h5>
           <p class="card-text"><small class="text-muted">{{date}}</small></p>
