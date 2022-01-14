@@ -26,8 +26,20 @@ ds_projects = [{'title':'Book recommender',
                     'date':'12-11-2021',
                     'link':'https://github.com/pvillegasmartin/Challenge-week-2'}
     ]
-pbi_projects = []
-other_projects = []
+pbi_projects = [{'title':'PBI Project 1',
+                    'img':'/static/powerbi.PNG',
+                    'img_desc':'Book_recommender_image',
+                    'text':'Basic project of an author/book recommender.',
+                    'technologies':[('PowerBI', '/static/powerbi.PNG')],
+                    'date':'15-10-2021',
+                    'link':'https://github.com/pvillegasmartin/challange_week_1'}]
+other_projects = [{'title':"80'sFeeling",
+                    'img':'/static/80sfeeling.JPEG',
+                    'img_desc':'Lots_of_patches',
+                    'text':'Online shop of denim jackets with patches.',
+                    'technologies':[('Shopify', '/static/shopify.PNG')],
+                    'date':'14-01-2021',
+                    'link':'https://www.80sfeeling.com'}]
 
 @app.route('/')
 def home():

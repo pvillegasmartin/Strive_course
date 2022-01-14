@@ -45,6 +45,14 @@ h2{
     width:17vh;
 }
 
+.jumbotron-heading{
+    color:white;
+}
+
+.jumbotron .lead{
+    color:#f5f0f0;
+}
+
 /* -------------- ABOUT ME -------------- */
 
 #about_me > *{
