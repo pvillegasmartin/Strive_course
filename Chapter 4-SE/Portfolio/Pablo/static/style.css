@@ -1,11 +1,11 @@
 /* -------------- GENERAL -------------- */
 :root{
 
-    --background-color: #e3e2da;
-    --prymary-color: #d4e09bff;
-    --tea-green: #cbdfbdff;
-    --dark-salmon: #f19c79ff;
-    --medium-carmine: #a44a3fff;
+    --primary-color: #397367ff;
+    --secondary-color: #63cccaff;
+    --third-color: #5da399ff;
+    --fourth-color: #42858cff;
+    --background-color: #35393cff;
 
     --text-color: #232323;
 }
@@ -72,31 +72,32 @@ h2{
     object-position: top;
 }
 
+
 /* colors buttons */
 
 .list-group-item.active#list-1-list{
-    background-color:#42424a;
-    border-color: #42424a;
+    background-color:var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .list-group-item.active#list-2-list{
-    background-color:#67679f;
-    border-color: #67679f;
+    background-color:var(--secondary-color);
+    border-color: var(--secondary-color);
 }
 
 .list-group-item.active#list-3-list{
-    background-color:#937549;
-    border-color: #937549;
+    background-color:var(--third-color);
+    border-color: var(--third-color);
 }
 
 .list-group-item.active#list-4-list{
-    background-color:#346b85;
-    border-color: #346b85;
+    background-color:var(--fourth-color);
+    border-color: var(--fourth-color);
 }
 
 .list-group-item.active#list-5-list{
-    background-color:#bf9351;
-    border-color: #bf9351;
+    background-color:var(--background-color);
+    border-color: var(--background-color);
 }
 
 /* -------------- PROJECTS -------------- */
@@ -110,4 +111,11 @@ h2{
 .card:hover{
     background-color: #d7d8db;
     transition: background-color .5s;
+}
+
+/* -------------- CONTACT -------------- */
+
+.quote{
+    font-style: italic;
+    margin: 0 0 3rem 0;
 }
