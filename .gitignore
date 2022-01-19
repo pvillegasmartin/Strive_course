@@ -5,7 +5,6 @@
 *.weights
 *.cfg
 *.ttf
-*.txt
 *.mp4
 *.names
 Chapter 3-DL/06. Computational vision/darknet/
