@@ -1,0 +1,63 @@
+--SELECT customer_id,ROUND(SUM(amount),2) AS total, (SELECT ROUND(AVG(amount),2) FROM payment) AS mean FROM payment GROUP BY customer_id HAVING ROUND(SUM(amount),2) > (SELECT ROUND(AVG(amount),2) FROM payment);
+
+-- Q1: Select film title description and release year join category table.
+-- Name column names with table name by using snake case.
+/*
+SELECT film.title, film.release_year, category.name AS category_name 
+FROM film
+JOIN film_category USING (film_id)
+JOIN category USING (category_id);
+*/
+
+-- Q2: Select customer and their address join country and city tables
+-- Name column names with table name by using snake case.
+/*
+SELECT first_name AS customer_first_name, last_name AS customer_last_name, address.address, city.city, country.country
+FROM customer
+JOIN address USING(address_id)
+JOIN city USING(city_id)
+JOIN country USING(country_id)
+*/
+
+-- Q3: Select all payments info including staff info, customer info, and rental info.
+-- Name column names with table name by using snake case.
+/*
+SELECT payment_id, payment.payment_date, amount, staff.first_name || ' ' || staff.last_name AS staff_name, customer.first_name || ' ' || customer.last_name AS customer_name, rental.return_date
+FROM payment
+JOIN staff USING(staff_id)
+JOIN customer USING(customer_id)
+JOIN rental USING(rental_id)
+*/
+
+-- Q4: Select all the actors and films and join them
+-- Name column names with table name by using snake case.
+/*
+SELECT actor.first_name || ' ' || actor.last_name AS actor_name, film.title AS film_title
+FROM actor
+JOIN film_actor USING (actor_id)
+JOIN film USING (film_id)
+ORDER BY actor_name;
+*/
+
+-- Q5: Select all the stores with addresses and manager staff name last name.
+/*
+SELECT store.store_id, address, staff.first_name || ' ' || staff.last_name AS staff_name
+FROM store
+JOIN address USING (address_id)
+JOIN staff ON staff.staff_id=store.manager_staff_id
+*/
+
+-- Q6: In this store, every worker receives 1500 $ base salary
+-- After the 5000th movie, they get a bonus of 0.1 euro for every movie they rent.
+-- Calculate total bonus that is received by staff members and join their names and last_names
+/*
+SELECT staff.first_name || ' ' || staff.last_name AS staff_name,COUNT(staff_id)*0.1 AS bonus
+FROM rental
+JOIN staff USING (staff_id)
+WHERE rental_id IN (SELECT rental_id
+	FROM rental
+	ORDER BY rental_date ASC
+	OFFSET 5000)
+GROUP BY staff_name;
+*/
+
