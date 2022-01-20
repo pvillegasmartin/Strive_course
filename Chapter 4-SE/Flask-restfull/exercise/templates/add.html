@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Add{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <form action="" method="post">
+            <label for="title">Title: </label>
+            <input type="text" id="title" name="title" /><br>
+            <label for="description">Description: </label>
+            <input type="text" id="description" name="description" /><br>
+            <label for="done">Done: </label>
+            <input type="boolean" id="done" name="done" /><br>
+            <input type="submit" id="send-signup" name="signup" value="Registrar" />
+        </form>
+    </div>
+
+{% endblock %}
