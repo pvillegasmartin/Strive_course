@@ -8,8 +8,10 @@
         <h1>WELCOME TO TODOS</h1>
 
         {% for todo in data['data'] %}
+            <a href="/movie/<imdbid>">
             <h5>{{todo['title']}}</h5>
             <span>{{todo['description']}}</span>
+                </a>
         {% endfor %}
     </div>
 
