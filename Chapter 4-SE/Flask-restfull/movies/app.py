@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
     @app.route("/movie/<imdbid>", methods=["GET","POST"])
     def film_detail(imdbid):
-        URL = f'http://www.omdbapi.com/?i={imdbid}&apikey=fb4d7ea8'
+        URL = f'http://www.omdbapi.com/?i={imdbid}&apikey=eba36525'
         r = requests.get(URL)
         movie = r.json()
         req = requests.get(f'http://127.0.0.1:5000/movie/{imdbid}')
