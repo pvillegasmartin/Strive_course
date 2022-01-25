@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b3432fd6-79f4-4e8b-ad5f-1bc52765eb21" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../exercise/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exercise/dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exercise/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../exercise/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../exercise/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../exercise/model/model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../exercise/model/model_mnist.pth" beforeDir="false" afterPath="$PROJECT_DIR$/../exercise/model_mnist.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../exercise/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../exercise/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +22,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -37,6 +44,13 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Pablo\Desktop\STRIVE\Strive_course\Chapter 4-SE\Docker\exercise\model" />
+      <recent name="C:\Users\Pablo\Desktop\STRIVE\Strive_course\Chapter 4-SE\Docker\exercise" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.main (1)">
     <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -81,9 +95,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="docker" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../exercise/model" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\Pablo\Desktop\STRIVE\Strive_course\Chapter 4-SE\Docker\exercise\model\model.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main (1)" />
+        <item itemvalue="Python.model" />
       </list>
     </recent_temporary>
   </component>
