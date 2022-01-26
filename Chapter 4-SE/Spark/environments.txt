@@ -1,0 +1,46 @@
+cd c:\
+
+### create a new venv
+python3 -m venv DeepMachineLearning
+
+### activate an existing venv
+DeepMachineLearning\scripts\activate
+
+c:\DeepMachineLearning\Scripts\python.exe -m pip install --upgrade pip
+
+
+pip install -U scikit-learn
+pip install pandas
+pip install matplotlib
+
+conda install -c pytorch pytorch
+pip3 install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio===0.10.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+pip install torchvision
+
+pip install opencv-contrib-python==4.4.0.46
+
+##########################################################################################################################
+# CREATE REQUIREMENTS FILE
+
+pip3 freeze >> ./src/requirements.txt
+
+##########################################################################################################################
+# Create virtualEnv
+python3 -m venv env
+
+# Activate the new environment (linux)
+source env/bin/activate
+
+# Install basic dependencies we might need
+pip install wheel numpy scipy matplotlib scikit-image scikit-learn ipython
+
+# Install openCV (this is recommended for MacOs BigSurf, did not test in other versions)
+pip install opencv-python-headless 
+
+# if the above opencv does not work on you OS try running the line below:
+# pip install opencv-contrib-python==4.4.0.46
+# Install ipykernel if not installed 
+pip install ipykernel
+
+# Replace VIRTUAL_ENV_NAME and "Name you want to show for the Jupyter kernel" 
+python -m ipykernel install --user --name VIRTUAL_ENV_NAME --display-name "Name you want to show for the Jupyter kernel"
