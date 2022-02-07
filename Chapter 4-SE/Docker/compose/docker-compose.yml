@@ -26,6 +26,11 @@ services:
       interval: 3s
       timeout: 5s
       retries: 10
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
 
 volumes:
   postgres-db:
